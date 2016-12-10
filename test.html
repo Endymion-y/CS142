@@ -1,0 +1,35 @@
+<html>
+<head>
+	<title>Test</title>
+	<script type="text/javascript">
+	var isMouseDown = false;
+	var prevX, prevY;
+
+	function mouseDown(event){
+		isMouseDown = true;
+		prevX = event.pageX;
+		prevY = event.pageY;
+		// document.getElementById("div1").innerHTML = "Hello";
+	}
+
+	function mouseUp(event){
+		isMouseDown = false;
+	}
+
+	function mouseMove(event){
+		if (isMouseDown){
+			var div = document.getElementById("div1");
+			div.style.left = (div.offsetLeft + (event.pageX - prevX)) + "px";
+			div.style.top = (div.offsetTop + (event.pageY - prevY)) + "px";
+			prevX = event.pageX;
+			prevY = event.pageY;
+		}
+	}
+	</script>
+</head>
+<body>
+	<!-- <div style="display: inline-block; height: 300px; width: 200px; "> -->
+		<div id="div1" style="padding: 30px; background: yellow; position: absolute; top: 100px; left: 20px; " onmousedown="mouseDown(event);" onmouseup="mouseUp(event);" onmousemove="mouseMove(event);">Drag me!</div>
+	<!-- </div> -->
+</body>
+</html>
